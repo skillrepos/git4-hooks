@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+echo Running post-commit hook
+
+web_dir=$(git config hooks.webdir)
+
+new_head_ref=$(git rev-parse --abbrev-ref HEAD)
+
+unset GIT_INDEX_FILE
+
+if [[ -n "$web_dir" ]] && [[ $new_head_ref =~ ^web.*$ ]]; then
+   results=$(git --work-tree="$web_dir" checkout -f)
+fi
+
+
+
+
+
+
+
